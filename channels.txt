@@ -1,0 +1,17 @@
+VOV1-new|https://audio-lss.vov.vn/han/live/vov1/audio/haudio-eng.m3u8
+Vov2|https://str.vov.gov.vn/vovlive/vov2.sdp_aac/playlist.m3u8
+Vov3|https://str.vov.gov.vn/vovlive/vov3.sdp_aac/playlist.m3u8
+VOV5|https://stream.vovmedia.vn/vov5
+VOH|https://strm.voh.com.vn/radio/channel5/playlist.m3u8
+VOV GT|https://play.vovgiaothong.vn/live/gthn/playlist.m3u8
+VOV Mekong|https://stream.vovmedia.vn/vovmekong
+STV|https://cdn.sonlatv.vn/live/285bfb76d0d7a3c4615b853fe7a698e150c/playlist.m3u8
+CN Tiếng Việt|https://live.cri.cn/viet/playlist.m3u8
+FM Ha Noi|http://14.162.146.90:8000/HANOI90
+Lang Son|https://stream.langsontv.vn/live/285c78da0c246524c90917842f8de03bd21/playlist.m3u8
+Can Tho|https://live.canthotv.vn/live/radio/playlist.m3u8
+Tuyen Quang|https://streaming.tuyenquangtv.vn/channel/tuyenquang_radio/playlist.m3u8
+Quang Ninh|https://live.baoquangninh.vn/qtvlive/qnr1.m3u8
+Quang Ninh 2|https://live.baoquangninh.vn/qtvlive/qnr2.m3u8
+
+
