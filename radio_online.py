@@ -12,8 +12,8 @@ app = Flask(__name__)
 AUDIO_DEV = "alsa/hw:1,0"  # Card âm thanh USB
 CHANNELS_FILE = "/home/pi/channels.txt"
 YOUTUBE_CHANNELS_FILE = "/home/pi/youtube_channels.txt"  # File riêng cho YouTube
-DEFAULT_VOL = 100
-DEFAULT_URL = "https://audio-lss.vov.vn/han/live/vov1/audio/haudio-eng.m3u8"
+DEFAULT_VOL = 80
+DEFAULT_URL ="https://str.vov.gov.vn/vovlive/vov1vov5Vietnamese.sdp_aac/playlist.m3u8"
 DEFAULT_NAME = "VOV1"
 
 # Trạng thái hệ thống
@@ -256,11 +256,40 @@ def delete_youtube():
 def current_status():
     """API trả về trạng thái hiện tại"""
     return jsonify({
-        "name": system_state["current_name"],
-        "volume": system_state["volume"],
-        "type": system_state["current_type"]
+        "name": system_state.get("current_name", "Không có tên"),
+        "volume": system_state.get("volume", 80),
+        "type": system_state.get("current_type", "radio"),
+        "is_paused": system_state.get("is_paused", False)  # 👈 Thêm dòng này
     })
 
+# --- BỔ SUNG API TRẢ VỀ DANH SÁCH KÊNH CHO APP MOBILE ---
+
+@app.route('/api/radio_channels')
+def api_get_radio_channels():
+    """API trả về danh sách Radio cho App Mobile"""
+    return jsonify(get_radio_channels())
+
+@app.route('/api/youtube_channels')
+def api_get_youtube_channels():
+    """API trả về danh sách YouTube cho App Mobile"""
+    return jsonify(get_youtube_channels())
+
+# --- Bổ sung vào radio_web.py ---
+
+@app.route('/restart_service', methods=['POST'])
+def restart_service():
+    """API để khởi động lại dịch vụ radio_web.service"""
+    try:
+        # Chạy lệnh restart service ngầm qua systemctl
+        subprocess.Popen(["sudo", "systemctl", "restart", "radio_web.service"])
+        return jsonify({"success": True, "message": "Đang khởi động lại service..."})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return 'pong', 200
+    
 # --- GIAO DIỆN HTML/JS ---
 HTML_TEMPLATE = '''
 <!DOCTYPE html>
